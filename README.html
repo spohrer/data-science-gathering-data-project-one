@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>README - run_analysis.R</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>README - run_analysis.R</h1>
+
+<h1>Purpose:</h1>
+
+<pre><code>To do some data analysis, and data cleanup on measurements taken
+from up to 30 subjects, and their motions as measured by 
+smartphones, as they performed 6 different activities.
+</code></pre>
+
+<h1>Inputs:</h1>
+
+<pre><code>X_train.txt  = file of training observations
+y_train.txt = class variable, one for each training observation
+X_test.txt = file of test observations
+y_test.txt = class variable, one for each test observation
+
+features.txt = file that maps the 561 measurements to their names, 
+                to be used for the variable or column names
+subject_train.txt = file of the subject number participant, 
+                one for each observation in the training set,
+                varies between 1 and 30
+subject_test.txt = file of the subject number participant, 
+                one for each observation in the test set,
+                varies between 1 and 30
+activity_labels.txt = file of descriptions for each of 6 activities 
+                that are measured in this experiment
+
+ASSUMPTION: the files will all reside in the same directory as 
+                the run_analysis program.
+</code></pre>
+
+<h1>Original source of the data files:</h1>
+
+<p>DATA SOURCE CITATION:  [1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra 
+ and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a 
+ Multiclass Hardware-Friendly Support Vector Machine. International Workshop 
+ of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012</p>
+
+<h1>Output:</h1>
+
+<pre><code>File name:  tidy_analysis.txt
+
+Format:     comma-seperated-file, with headers, saved with a .txt extension.
+
+Description:  For each measurement that focused on the mean and standard 
+            deviation of the various movements that were measured in the
+            experiment, we calculate a mean for each measurement grouped by 
+            the subject number, and the activity.  For instance, for subject 
+            number 1, and for their activity of WALKING, calculate a mean
+            for each of the measurements already summarized by a mean or a 
+            standard deviation.
+</code></pre>
+
+<h1>Processing -  The following steps were taken:</h1>
+
+<pre><code>Since the original files where divided into training observations, training classification,
+testing observations and testing classification, they were combined into one large file.
+
+Since the original column names may have had duplicates, the column names where made unique
+by appending either a &quot;.1&quot;, or &quot;.2&quot; as appropriate.
+
+Append the class labels to the observations.
+
+Append the activity labels to each observations, matched on activity number.
+
+Append the subject numbers to each observation.
+
+Fcous only on those columns that resulted in a measurement of the mean, 
+or a standard deviation. These columns had &quot;mean&quot; or &quot;std&quot; as part of the
+feature name. I ignored those that also had &quot;meanFreq&quot; as part of the name.
+
+Finally, calculate a mean on each of those columns as grouped by
+subject and activity. Write this out to the file tidy_analysis.txt as
+a comma-seperated file.
+</code></pre>
+
+</body>
+
+</html>
+

@@ -1,0 +1,18 @@
+Codebook
+========================================================
+
+
+Field names for the output file - tidy_analysis.txt
+
+```{r, comment="", echo=FALSE}
+
+df2 <- read.csv(file="tidy_analysis.txt", header=TRUE, check.names=FALSE)
+
+
+nam2 <- colnames(df2)
+for ( i in 1:length(nam2)){
+    cat(nam2[[i]], "\n")
+}
+
+```
+
